@@ -8,7 +8,10 @@ export class Stop extends React.Component {
     Stop_Code: '',
     Name: '',
     Description: '',
-    Bus_Lines: ''
+    Bus_Lines: '',
+    Latitude:'',
+    Longitude:''
+
   };
 
   this.handleChange = this.handleChange.bind(this);
@@ -25,22 +28,23 @@ handleSubmit(event) {
   //console.log(this);
   event.preventDefault();
   console.log(this.state);
-  var data =
+
 fetch('/stops/new', {
   method: 'POST',
   headers: {
     'Accept': 'application/json',
     'Content-Type':'application/json'},
-  body: {
+  body: JSON.stringify({
     Stop_Code: this.state.Stop_Code,
     Name: this.state.Name,
+    Position:{lat:this.state.Latitude , lng:this.state.Longitude},
     Description: this.state.Description,
     Bus_Lines: this.state.Bus_Lines
 
-},
+}),
 })
 .then(function(res){ return res.json(); })
-.then(function(data){ console.console.log( JSON.stringify( data ) ) });
+.then(function(data){ console.log( JSON.stringify( data ) ) });
 
 
 
