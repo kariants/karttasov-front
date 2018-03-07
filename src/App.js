@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Stop from './Stop.js';
 import TimeTables from "./TimeTables.js";
+import Routes from "./Routes.js";
 
 class App extends Component {
   render() {
@@ -10,9 +11,14 @@ class App extends Component {
       <p>hello world</p>
       <br />
 
-      <TimeTables />
-      <br />
+
+
       <Stop />
+
+      <br />
+      <Routes />
+  <br />
+        <TimeTables />
       </div>
 
 

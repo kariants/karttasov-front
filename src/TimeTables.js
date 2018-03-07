@@ -12,30 +12,32 @@ export class TimeTables extends React.Component {
   this.handleChange = this.handleChange.bind(this);
   this.handleSubmit = this.handleSubmit.bind(this);
 }
+
 handleChange(event) {
-  this.setState({
-    Stop_Code: event.target.value,
-    Line_Number: event.target.value,
-    Stop_Times: event.target.value,
-  });
+  var change = {}
+    change[event.target.name] = event.target.value
+    this.setState(change)
 }
+
 handleSubmit(event) {
+  console.log(this);
   event.preventDefault();
 }
 render() {
   return (
     <div>
+    <p>Timetables Form</p>
           <form onSubmit={this.handleSubmit}>
-            <label for="Stop Code">Stop Code
-            <input type="text" name="Stop_Code" id="Stop_Code" />
+            <label htmlFor="Stop_Code">Stop Code
+            <input type="text" name="Stop_Code" id="Stop_Code" onChange={this.handleChange.bind(this)} value={this.state.name}/>
             </label><br/>
 
-            <label for="Name">Line Number
-            <input type="text" name="Line_Number" id="Name" />
+            <label htmlFor="Line_Number">Line Number
+            <input type="text" name="Line_Number" id="Name" onChange={this.handleChange.bind(this)} value={this.state.name}/>
             </label><br/>
 
-            <label for="Description">Stop Times
-            <input type="text" name="Stop_Times" id="Description" />
+            <label htmlFor="Stop_Times">Stop Times
+            <input type="text" name="Stop_Times" id="Description" onChange={this.handleChange.bind(this)} value={this.state.name}/>
             </label><br/>
 
             <input type="submit" value="Submit" />
