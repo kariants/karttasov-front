@@ -21,8 +21,24 @@ handleChange(event) {
 
 
 handleSubmit(event) {
-  console.log(this);
-  event.preventDefault();
+//  console.log(this);
+event.preventDefault();
+fetch("/routes/new",{
+  method: 'POST',
+  headers: {
+    'Accept': 'application/json',
+    'Content-Type':'application/json'},
+
+    body: JSON.stringify({
+      Stop_Code:this.state.Stop_Code,
+      Agency:this.state.Agency,
+      Description:this.state.Description,
+      Line_Number:this.state.Line_Number
+    }),
+})
+.then(function(res){ return res.json(); })
+.then(function(data){ console.log( JSON.stringify( data ) ) });
+
 }
   render() {
     return (
@@ -47,9 +63,6 @@ handleSubmit(event) {
               <label htmlFor="Line_Number">Line Number
               <input type="Line_Number" name="Line_Number" id="Line_Number" onChange={this.handleChange.bind(this)} value={this.state.name}/>
               </label><br/>
-
-
-
 
               <input type="submit" value="Submit"/>
             </form>

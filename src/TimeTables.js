@@ -20,8 +20,24 @@ handleChange(event) {
 }
 
 handleSubmit(event) {
-  console.log(this);
+//  console.log(this);
   event.preventDefault();
+  fetch('/stops/new', {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type':'application/json'},
+
+    body: JSON.stringify({
+      Stop_Code: this.state.Stop_Code,
+      Description: this.state.Description,
+      Line_Number: this.state.Bus_Lines,
+      Stop_Times:this.state.Stop_Times
+
+  }),
+  })
+  .then(function(res){ return res.json(); })
+  .then(function(data){ console.log( JSON.stringify( data ) ) });
 }
 render() {
   return (

@@ -27,13 +27,14 @@ handleChange(event) {
 handleSubmit(event) {
   //console.log(this);
   event.preventDefault();
-  console.log(this.state);
+  //console.log(this.state);
 
 fetch('/stops/new', {
   method: 'POST',
   headers: {
     'Accept': 'application/json',
     'Content-Type':'application/json'},
+    
   body: JSON.stringify({
     Stop_Code: this.state.Stop_Code,
     Name: this.state.Name,
