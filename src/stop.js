@@ -24,16 +24,18 @@ handleChange(event) {
 handleSubmit(event) {
   console.log(this);
   event.preventDefault();
-
+  console.log(this.state);
 fetch('/stops/new', {
   method: 'POST',
-  body: {
-    Stop_Code: event.state.Stop_Code,
-    Name: event.state.Name,
-    Description: event.state.Description,
-    Bus_Lines: event.state.Bus_Lines
-  }
+  body: JSON.stringify({
+    Stop_Code: this.state.Stop_Code,
+    Name: this.state.Name,
+    Description: this.state.Description,
+    Bus_Lines: this.state.Bus_Lines,
+  }),
 });
+
+
 
 }
 
