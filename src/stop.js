@@ -8,8 +8,9 @@ export class Stop extends React.Component {
     Stop_Code: '',
     Name: '',
     Description: '',
-    Location: '',
-    Bus_Lines: ''
+    Latitude: '',
+    Longitude: '',
+    Line_Number: ''
   };
 
   this.handleChange = this.handleChange.bind(this);
@@ -21,8 +22,9 @@ handleChange(event) {
     Stop_Code: event.target.value,
     Name: event.target.value,
     Description: event.target.value,
-    Location: event.target.value,
-    Bus_Lines: event.target.value
+    Latitude: event.target.value,
+    Longitude: event.target.value,
+    Line_Number: event.target.value
   });
 }
 
@@ -55,8 +57,8 @@ handleSubmit(event) {
               </label><br/>
 
 
-              <label for="Bus Lines">Bus Lines
-              <input type="number" name="Bus_Lines" id="Bus_Lines" multiple />
+              <label for="Line_Number">Line_Number
+              <input type="Line_Number" name="Line_Number" id="Line_Number" multiple />
               </label><br/>
 
 
