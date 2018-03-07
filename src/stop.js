@@ -47,11 +47,11 @@ handleSubmit(event) {
               </label><br/>
 
               <label for="Latitude">Latitude
-              <input type="number" name="Latitude" id="Latitude" placeholder="Latitude" />
+              <input type="number" name="Latitude" step="0.000001" id="Latitude" placeholder="Latitude" />
               </label><br/>
 
               <label for="Longitude">Longitude
-              <input type="number" name="Longitude" id="Longitude" placeholder="Longitude" />
+              <input type="number" name="Longitude" step="0.000001" id="Longitude" placeholder="Longitude" />
               </label><br/>
 
 
