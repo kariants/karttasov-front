@@ -2,6 +2,34 @@ import React from 'react';
 
 export class Stop extends React.Component {
 
+  constructor(props) {
+  super(props);
+  this.state = {
+    Stop_Code: '',
+    Name: '',
+    Description: '',
+    Location: '',
+    Bus_Lines: ''
+  };
+
+  this.handleChange = this.handleChange.bind(this);
+  this.handleSubmit = this.handleSubmit.bind(this);
+}
+
+handleChange(event) {
+  this.setState({
+    Stop_Code: event.target.value,
+    Name: event.target.value,
+    Description: event.target.value,
+    Location: event.target.value,
+    Bus_Lines: event.target.value
+  });
+}
+
+handleSubmit(event) {
+  event.preventDefault();
+}
+
   render() {
     return (
       <div>
