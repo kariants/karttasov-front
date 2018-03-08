@@ -34,7 +34,7 @@ fetch('/stops/new', {
   headers: {
     'Accept': 'application/json',
     'Content-Type':'application/json'},
-    
+
   body: JSON.stringify({
     Stop_Code: this.state.Stop_Code,
     Name: this.state.Name,

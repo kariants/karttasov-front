@@ -46,22 +46,22 @@ fetch("/routes/new",{
           <p>Routes Form</p>
 
             <form onSubmit={this.handleSubmit}>
+
+
+            <label htmlFor="Line_Number">Line Number
+            <input type="Line_Number" name="Line_Number" id="Line_Number" onChange={this.handleChange.bind(this)} value={this.state.name}/>
+            </label><br/>
+
+            <label htmlFor="Description">Description
+            <input type="Description" name="Description" id="Description" onChange={this.handleChange.bind(this)} value={this.state.name}/>
+            </label><br/>
+
             <label htmlFor="Agency">Agency
             <input type="text" name="Agency" id="Agency" onChange={this.handleChange.bind(this)} value={this.state.name}/>
             </label><br/>
 
               <label htmlFor="Stop Code">Stop Code
               <input type="text" name="Stop_Code" id="Stop_Code" onChange={this.handleChange.bind(this)} value={this.state.name}/>
-              </label><br/>
-
-
-              <label htmlFor="Description">Description
-              <input type="Description" name="Description" id="Description" onChange={this.handleChange.bind(this)} value={this.state.name}/>
-              </label><br/>
-
-
-              <label htmlFor="Line_Number">Line Number
-              <input type="Line_Number" name="Line_Number" id="Line_Number" onChange={this.handleChange.bind(this)} value={this.state.name}/>
               </label><br/>
 
               <input type="submit" value="Submit"/>
