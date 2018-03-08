@@ -8,7 +8,7 @@ export class Stop extends React.Component {
     Stop_Code: '',
     Name: '',
     Description: '',
-    Bus_Lines: '',
+    Line_Number: '',
     Latitude:'',
     Longitude:''
 
@@ -40,7 +40,7 @@ fetch('/stops/new', {
     Name: this.state.Name,
     Position:{lat:this.state.Latitude , lng:this.state.Longitude},
     Description: this.state.Description,
-    Bus_Lines: this.state.Bus_Lines
+    Line_Number: this.state.Bus_Lines
 
 }),
 })
@@ -66,10 +66,6 @@ fetch('/stops/new', {
               <input type="text" name="Name" id="Name" onChange={this.handleChange.bind(this)} value={this.state.name}/>
               </label><br/>
 
-              <label htmlFor="Description">Description
-              <input type="text" name="Description" id="Description" onChange={this.handleChange.bind(this)} value={this.state.name}/>
-              </label><br/>
-
               <label htmlFor="Latitude">Latitude
               <input type="number" name="Latitude" step="0.000001" id="Latitude" placeholder="Latitude" onChange={this.handleChange.bind(this)} value={this.state.name}/>
               </label>
@@ -78,8 +74,12 @@ fetch('/stops/new', {
               <input type="number" name="Longitude" step="0.000001" id="Longitude" placeholder="Longitude" onChange={this.handleChange.bind(this)} value={this.state.name}/>
               </label><br/>
 
-              <label htmlFor="Bus Lines">Bus Lines
-              <input type="text" name="Bus_Lines" id="Bus_Lines" onChange={this.handleChange.bind(this)} value={this.state.name}/>
+              <label htmlFor="Description">Description
+              <input type="text" name="Description" id="Description" onChange={this.handleChange.bind(this)} value={this.state.name}/>
+              </label><br/>
+
+              <label htmlFor="Bus Lines">Line Number
+              <input type="text" name="Line_Number" id="Line_Number" onChange={this.handleChange.bind(this)} value={this.state.name}/>
               </label><br/>
 
 

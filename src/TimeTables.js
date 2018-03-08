@@ -30,7 +30,7 @@ handleSubmit(event) {
 
     body: JSON.stringify({
       Stop_Code: this.state.Stop_Code,
-      Line_Number: this.state.Bus_Lines,
+      Line_Number: this.state.Line_Number,
       Stop_Times:this.state.Stop_Times
 
   }),
