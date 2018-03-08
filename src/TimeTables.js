@@ -22,7 +22,7 @@ handleChange(event) {
 handleSubmit(event) {
 //  console.log(this);
   event.preventDefault();
-  fetch('/stops/new', {
+  fetch('/timetables/new', {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
@@ -30,7 +30,6 @@ handleSubmit(event) {
 
     body: JSON.stringify({
       Stop_Code: this.state.Stop_Code,
-      Description: this.state.Description,
       Line_Number: this.state.Bus_Lines,
       Stop_Times:this.state.Stop_Times
 
