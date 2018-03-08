@@ -5,7 +5,7 @@ export class TimeTables extends React.Component {
   super(props);
   this.state = {
     Stop_Code: '',
-    Line_Number: '',
+    Line_Code: '',
     Stop_Times: '',
   };
 
@@ -30,7 +30,7 @@ handleSubmit(event) {
 
     body: JSON.stringify({
       Stop_Code: this.state.Stop_Code,
-      Line_Number: this.state.Line_Number,
+      Line_Number: this.state.Line_Code,
       Stop_Times:this.state.Stop_Times
 
   }),
@@ -47,12 +47,12 @@ render() {
             <input type="text" name="Stop_Code" id="Stop_Code" onChange={this.handleChange.bind(this)} value={this.state.name}/>
             </label><br/>
 
-            <label htmlFor="Line_Number">Line Number
-            <input type="text" name="Line_Number" id="Name" onChange={this.handleChange.bind(this)} value={this.state.name}/>
+            <label htmlFor="Line_Code">Line Code
+            <input type="text" name="Line_Code" id="Line_Code" onChange={this.handleChange.bind(this)} value={this.state.name}/>
             </label><br/>
 
             <label htmlFor="Stop_Times">Stop Times
-            <input type="text" name="Stop_Times" id="Description" onChange={this.handleChange.bind(this)} value={this.state.name}/>
+            <input type="text" name="Stop_Times" id="Stop_Times" onChange={this.handleChange.bind(this)} value={this.state.name}/>
             </label><br/>
 
             <input type="submit" value="Submit" />

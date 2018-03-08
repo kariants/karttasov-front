@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Stop from './Stop.js';
-import TimeTables from "./TimeTables.js";
-import Routes from "./Routes.js";
+import Post from './PostNew.js';
 
 class App extends Component {
   render() {
@@ -10,19 +8,8 @@ class App extends Component {
       <div className="App">
       <p>hello world</p>
       <br />
-
-
-
-      <Stop />
-
-      <br />
-      <Routes />
-  <br />
-        <TimeTables />
+        <Post/>
       </div>
-
-
-
     );
   }
 }

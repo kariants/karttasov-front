@@ -7,7 +7,7 @@ export class Routes extends React.Component {
     Stop_Code: '',
     Agency: '',
     Description: '',
-    Line_Number: ''
+    Line_Code: ''
   };
 
   this.handleChange = this.handleChange.bind(this);
@@ -33,7 +33,7 @@ fetch("/routes/new",{
       Stop_Code:this.state.Stop_Code,
       Agency:this.state.Agency,
       Description:this.state.Description,
-      Line_Number:this.state.Line_Number
+      Line_Code:this.state.Line_Code
     }),
 })
 .then(function(res){ return res.json(); })
@@ -48,8 +48,8 @@ fetch("/routes/new",{
             <form onSubmit={this.handleSubmit}>
 
 
-            <label htmlFor="Line_Number">Line Number
-            <input type="Line_Number" name="Line_Number" id="Line_Number" onChange={this.handleChange.bind(this)} value={this.state.name}/>
+            <label htmlFor="Line_Code">Line Code
+            <input type="Line_Number" name="Line_Code" id="Line_Code" onChange={this.handleChange.bind(this)} value={this.state.name}/>
             </label><br/>
 
             <label htmlFor="Description">Description
