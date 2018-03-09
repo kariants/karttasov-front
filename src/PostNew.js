@@ -6,7 +6,7 @@ import Routes from "./Classes/Routes.js";
 class Post extends React.Component{
   constructor(props) {
   super(props);
-  this.state = '';
+  this.state = null;
 
   this.handleClick = this.handleClick.bind(this);
 }
@@ -27,6 +27,10 @@ handleClick(event) {
 }
 
   render(){
+
+    const style={
+      zIndex: '1'
+    }
     return(
       <div className="Post">
       <ul>
