@@ -29,8 +29,9 @@ handleClick(event) {
   render(){
 
     const style={
-      zIndex: '1'
+
     }
+
     return(
       <div className="Post">
       <ul>
