@@ -4,10 +4,10 @@ export class TimeTables extends React.Component {
   super(props);
   this.state = {
     Stop_Code: '',
-    day: '',
+    day: 'Weekday',
     hour: '',
     minute: '',
-    line: '',
+    line_Code: '',
     Stop_Time: '',
 
 
@@ -30,31 +30,32 @@ handleSubmit(event) {
 
   var timeStr = this.state.Stop_Time;
   var splitTime = timeStr.split(':');
-  this.state.hour = splitTime[0];
-  this.state.minute = splitTime[1];
 
 
-  fetch('/timetables/new', {
+  var hourTime = splitTime[0];
+  var minTime = splitTime[1];
+
+
+fetch('/timetables/new', {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
       'Content-Type':'application/json'},
-
-
 
     body: JSON.stringify({
       Stop_Code: this.state.Stop_Code,
 
       stopTimesObj: { dayType : this.state.day,
                     hours : {
-                      hour: this.state.hour ,
-                      allData: { data: {min: this.state.minute, Line_Code: this.state.line} }
+                      hour: hourTime,
+                      allData: { data: {min: minTime, Line_Code: this.state.line_Code} }
                     }
                   }
   }),
-  })
+})
   .then(function(res){ return res.json(); })
   .then(function(data){ console.log( JSON.stringify( data ) ) });
+
 }
 render() {
   return (
@@ -66,7 +67,7 @@ render() {
             </label><br/>
 
             <label htmlFor="Line_Code">Line Code
-            <input type="text" name="Line_Code" id="Line_Code" onChange={this.handleChange.bind(this)} value={this.state.name}/>
+            <input type="text" name="line_Code" id="line_Code" onChange={this.handleChange.bind(this)} value={this.state.name}/>
             </label><br/>
 
             <label htmlFor="Stop_Time">Stop Times
@@ -75,7 +76,7 @@ render() {
 
             <div>
             Day
-            <select name="day" form="timetables_form">
+            <select name="day" form="timetables_form" onChange={this.handleChange.bind(this)}>
             <option value="weekday">Weekday</option>
             <option value="saturday">Saturday</option>
             <option value="sunday">Sunday</option>

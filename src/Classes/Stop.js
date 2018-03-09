@@ -57,7 +57,7 @@ fetch('/stops/new', {
             <form onSubmit={this.handleSubmit}>
 
               <label htmlFor="Stop_Code">Stop Code
-              <input required type="text" name="Stop_Code" id="Stop_Code" onChange={this.handleChange.bind(this)} value={this.state.name}/>
+              <input required type="text" name="Stop_Code" id="Stop_Code" onChange={this.handleChange.bind(this)} value={this.state.Stop_Code}/>
               </label><br/>
 
               <label htmlFor="Name">Name
@@ -65,15 +65,15 @@ fetch('/stops/new', {
               </label><br/>
 
               <label htmlFor="Latitude">Latitude
-              <input required type="number" name="Lat" step="0.000001" id="Lat" placeholder="Latitude" onChange={this.handleChange.bind(this)} value={this.state.name}/>
+              <input required type="number" name="Lat" step="0.000001" id="Lat" placeholder="Latitude" onChange={this.handleChange.bind(this)} value={this.state.Lat}/>
               </label>
 
               <label htmlFor="Longitude">Longitude
-              <input required type="number" name="Lng" step="0.000001" id="Lng" placeholder="Longitude" onChange={this.handleChange.bind(this)} value={this.state.name}/>
+              <input required type="number" name="Lng" step="0.000001" id="Lng" placeholder="Longitude" onChange={this.handleChange.bind(this)} value={this.state.Lng}/>
               </label><br/>
 
               <label htmlFor="Desc">Description
-              <input required type="text" name="Desc" id="Desc" onChange={this.handleChange.bind(this)} value={this.state.name}/>
+              <input required type="text" name="Desc" id="Desc" onChange={this.handleChange.bind(this)} value={this.state.Desc}/>
               </label><br/>
 
               <input type="submit" value="Submit" />
