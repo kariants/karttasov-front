@@ -37,8 +37,8 @@ fetch('/stops/new', {
   body: JSON.stringify({
     Stop_Code: this.state.Stop_Code,
     Name: this.state.Name,
-    Pos:{lat:this.state.lat , lng:this.state.lng},
-    Description: this.state.Desc
+    Pos:{lat:this.state.Lat , lng:this.state.Lng},
+    Desc: this.state.Desc
 }),
 })
 .then(function(res){ return res.json(); })
