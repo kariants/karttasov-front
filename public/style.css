@@ -1,0 +1,18 @@
+html, body {
+  height: 100%;
+}
+
+#mapContainer {
+  height: 100%;
+}
+
+#root {
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  background-color: white;
+  position: fixed;
+  z-index: 10;
+  top: 70px;
+  left: 5px;
+}

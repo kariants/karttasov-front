@@ -6,7 +6,7 @@ import registerServiceWorker from './registerServiceWorker';
 import MapsRenderer from './MapsRenderer.js';
 import Bootstrap from 'bootstrap/dist/css/bootstrap.css';
 
-ReactDOM.render(<MapsRenderer />, document.getElementById('div2'));
+ReactDOM.render(<MapsRenderer />, document.getElementById('mapContainer'));
 ReactDOM.render(<App />, document.getElementById('root'));
 
 registerServiceWorker();
