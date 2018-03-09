@@ -34,7 +34,7 @@ handleClick(event) {
 
     return(
       <div className="Post">
-      <ul>
+      <ul id="form_list">
         <li role="button" id="Stop_button" onClick={this.handleClick.bind(this)}>Stop</li>
         <li role="button" id="Routes_button" onClick={this.handleClick.bind(this)}>Routes</li>
         <li role="button" id="TimeTables_button" onClick={this.handleClick.bind(this)}>Time Tables</li>

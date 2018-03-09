@@ -16,3 +16,20 @@ html, body {
   top: 70px;
   left: 5px;
 }
+
+#form_list li {
+  display:inline;
+  padding: 5px;
+}
+
+#searchBar {
+  position: fixed;
+  margin-left: auto;
+  margin-right: auto;
+
+  padding-top: 15px;
+  padding-left:40%;
+  width: 60%;
+  z-index: 11;
+
+}
