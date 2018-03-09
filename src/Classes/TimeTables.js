@@ -19,17 +19,16 @@ export class TimeTables extends React.Component {
 
 handleChange(event) {
   var change = {}
-  console.log(event.target.value);
     change[event.target.name] = event.target.value
     this.setState(change)
 
     if(event.target.name === "Stop_Code"){
+      fetch("/timetables/"+event.target.value).then(res =>res.json()).then((result)=>{
 
-      fetch("/timetables/"+event.target.value).then(function(res){ return res.json(); })
-      .then(function(data){
-        this.setState({list: data})
-      });
-    }
+      const data = result.map((line) =><option value={line.Stop_Code}/>);
+      this.setState({list: data})
+    });
+}
 }
 
 handleSubmit(event) {
@@ -65,13 +64,15 @@ fetch('/timetables/new', {
   .then(function(data){ console.log( JSON.stringify( data ) ) });
 
 }
+
 render() {
   return (
     <div>
     <p>Timetables Form</p>
           <form onSubmit={this.handleSubmit} id="timetables_form">
             <label htmlFor="Stop_Code">Stop Code
-            <input type="text" name="Stop_Code" id="Stop_Code" list={this.state.list} onChange={this.handleChange.bind(this)} value={this.state.name}/>
+            <input type="text" name="Stop_Code" id="Stop_Code" list={"item"} onChange={this.handleChange.bind(this)} value={this.state.name}/>
+            <datalist id="item">{this.state.list}</datalist>
             </label><br/>
 
             <label htmlFor="Line_Code">Line Code
