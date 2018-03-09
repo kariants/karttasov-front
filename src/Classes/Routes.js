@@ -4,7 +4,6 @@ export class Routes extends React.Component {
   constructor(props) {
   super(props);
   this.state = {
-    Stop_Code: '',
     Agency: '',
     Description: '',
     Line_Code: ''
@@ -30,7 +29,6 @@ fetch("/routes/new",{
     'Content-Type':'application/json'},
 
     body: JSON.stringify({
-      Stop_Code:this.state.Stop_Code,
       Agency:this.state.Agency,
       Description:this.state.Description,
       Line_Code:this.state.Line_Code
@@ -47,7 +45,6 @@ fetch("/routes/new",{
 
             <form onSubmit={this.handleSubmit}>
 
-
             <label htmlFor="Line_Code">Line Code
             <input type="Line_Number" name="Line_Code" id="Line_Code" onChange={this.handleChange.bind(this)} value={this.state.name}/>
             </label><br/>
@@ -59,10 +56,6 @@ fetch("/routes/new",{
             <label htmlFor="Agency">Agency
             <input type="text" name="Agency" id="Agency" onChange={this.handleChange.bind(this)} value={this.state.name}/>
             </label><br/>
-
-              <label htmlFor="Stop Code">Stop Code
-              <input type="text" name="Stop_Code" id="Stop_Code" onChange={this.handleChange.bind(this)} value={this.state.name}/>
-              </label><br/>
 
               <input type="submit" value="Submit"/>
             </form>

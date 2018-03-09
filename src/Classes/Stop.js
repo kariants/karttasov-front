@@ -7,10 +7,9 @@ export class Stop extends React.Component {
   this.state = {
     Stop_Code: '',
     Name: '',
-    Description: '',
-    Line_Code: '',
-    Latitude:'',
-    Longitude:''
+    Desc: '',
+    Lat:'',
+    Lng:''
 
   };
 
@@ -38,10 +37,8 @@ fetch('/stops/new', {
   body: JSON.stringify({
     Stop_Code: this.state.Stop_Code,
     Name: this.state.Name,
-    Position:{lat:this.state.Latitude , lng:this.state.Longitude},
-    Description: this.state.Description,
-    Line_Code: this.state.Line_Code
-
+    Pos:{lat:this.state.lat , lng:this.state.lng},
+    Description: this.state.Desc
 }),
 })
 .then(function(res){ return res.json(); })
@@ -58,30 +55,26 @@ fetch('/stops/new', {
             <p>Bus Stops Form</p>
 
             <form onSubmit={this.handleSubmit}>
-              <label htmlFor="Stop Code">Stop Code
-              <input type="text" name="Stop_Code" id="Stop_Code" onChange={this.handleChange.bind(this)} value={this.state.name}/>
+
+              <label htmlFor="Stop_Code">Stop Code
+              <input required type="text" name="Stop_Code" id="Stop_Code" onChange={this.handleChange.bind(this)} value={this.state.name}/>
               </label><br/>
 
               <label htmlFor="Name">Name
-              <input type="text" name="Name" id="Name" onChange={this.handleChange.bind(this)} value={this.state.name}/>
+              <input required type="text" name="Name" id="Name" onChange={this.handleChange.bind(this)} value={this.state.name}/>
               </label><br/>
 
               <label htmlFor="Latitude">Latitude
-              <input type="number" name="Latitude" step="0.000001" id="Latitude" placeholder="Latitude" onChange={this.handleChange.bind(this)} value={this.state.name}/>
+              <input required type="number" name="Lat" step="0.000001" id="Lat" placeholder="Latitude" onChange={this.handleChange.bind(this)} value={this.state.name}/>
               </label>
 
               <label htmlFor="Longitude">Longitude
-              <input type="number" name="Longitude" step="0.000001" id="Longitude" placeholder="Longitude" onChange={this.handleChange.bind(this)} value={this.state.name}/>
+              <input required type="number" name="Lng" step="0.000001" id="Lng" placeholder="Longitude" onChange={this.handleChange.bind(this)} value={this.state.name}/>
               </label><br/>
 
-              <label htmlFor="Description">Description
-              <input type="text" name="Description" id="Description" onChange={this.handleChange.bind(this)} value={this.state.name}/>
+              <label htmlFor="Desc">Description
+              <input required type="text" name="Desc" id="Desc" onChange={this.handleChange.bind(this)} value={this.state.name}/>
               </label><br/>
-
-              <label htmlFor="Bus Lines">Line Code
-              <input type="text" name="Line_Code" id="Line_Code" onChange={this.handleChange.bind(this)} value={this.state.name}/>
-              </label><br/>
-
 
               <input type="submit" value="Submit" />
             </form>
