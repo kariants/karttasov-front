@@ -46,14 +46,11 @@ export default class MapContainer extends Component {
         mapTypeId: 'roadmap' // optional main map layer. Terrain, satellite, hybrid or roadmap--if unspecified, defaults to roadmap.
       })
 
-      this.map = new maps.Map(node, mapConfig), {
-        styles : [
-        {
-          featureType: "poi",
-          elementType: "labels",
-          stylers: [{ visibility: "off" }]
-        }
-      ]};
+      this.map = new maps.Map(node, mapConfig);
+
+      var infoWindow = new google.maps.InfoWindow({
+			content: null
+		  });
 
       // creates a new Google map on the specified node (ref='map') with the specified configuration set above.
 
@@ -67,9 +64,21 @@ export default class MapContainer extends Component {
           map: this.map,
           title: markerArr[i].Name
         });
-        console.log(marker);
 
+        marker.addListener('click', function() {
+        this.map.setCenter(this.position);
+
+
+
+        infoWindow.setContent('pysakin nimi taha');
+        infoWindow.open(this.map, marker);
+
+        });
+        console.log(marker);
       }
+
+
+
 
 
 
