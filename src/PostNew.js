@@ -2,11 +2,12 @@ import React from 'react';
 import Stop from './Classes/Stop.js';
 import TimeTables from "./Classes/TimeTables.js";
 import Routes from "./Classes/Routes.js";
+import "./PostNew.css"
 
 class Post extends React.Component{
   constructor(props) {
   super(props);
-  this.state = null;
+  this.state = < Stop />;
 
   this.handleClick = this.handleClick.bind(this);
 }
@@ -27,10 +28,6 @@ handleClick(event) {
 }
 
   render(){
-
-    const style={
-
-    }
 
     return(
       <div className="Post">

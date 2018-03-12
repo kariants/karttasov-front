@@ -25,7 +25,8 @@ if(event.target.value > 0){
 }
 combiner(){
   var rou = this.state.route;
-  const all = rou.concat(this.state.stop);
+  var all = rou.concat(this.state.stop);
+
   return all
 }
 

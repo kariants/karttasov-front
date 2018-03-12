@@ -1,0 +1,13 @@
+#form_list li {
+  display:inline;
+  padding-left: 15px;
+  padding-right: 15px;
+  list-style-position:inside;
+
+}
+#form_list{
+  border: 1px solid black;
+}
+#form_list li:active{
+   background-color: yellow;
+}

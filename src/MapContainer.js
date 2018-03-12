@@ -40,20 +40,23 @@ export default class MapContainer extends Component {
 
       const mapConfig = Object.assign({}, {
 
-
         center: {lat: 60.1651157, lng: 24.9412466}, // sets center of google map to Helsinki.
         zoom: 13, // sets zoom. Lower numbers are zoomed further out.
-        mapTypeId: 'roadmap' // optional main map layer. Terrain, satellite, hybrid or roadmap--if unspecified, defaults to roadmap.
-      })
-
-      this.map = new maps.Map(node, mapConfig), {
+        mapTypeId: 'roadmap', // optional main map layer. Terrain, satellite, hybrid or roadmap--if unspecified, defaults to roadmap.
         styles : [
         {
-          featureType: "poi",
+          featureType:"poi",
+
           elementType: "labels",
           stylers: [{ visibility: "off" }]
+        },{
+          featureType: "transit.station",
+          stylers:[{visibility: "off"}]
         }
-      ]};
+      ]
+    });
+
+      this.map = new maps.Map(node, mapConfig);
 
       // creates a new Google map on the specified node (ref='map') with the specified configuration set above.
 
