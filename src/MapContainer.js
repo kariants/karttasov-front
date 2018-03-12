@@ -46,7 +46,16 @@ export default class MapContainer extends Component {
         mapTypeId: 'roadmap' // optional main map layer. Terrain, satellite, hybrid or roadmap--if unspecified, defaults to roadmap.
       })
 
-      this.map = new maps.Map(node, mapConfig); // creates a new Google map on the specified node (ref='map') with the specified configuration set above.
+      this.map = new maps.Map(node, mapConfig), {
+        styles : [
+        {
+          featureType: "poi",
+          elementType: "labels",
+          stylers: [{ visibility: "off" }]
+        }
+      ]};
+
+      // creates a new Google map on the specified node (ref='map') with the specified configuration set above.
 
       var markerArr = this.state.list;
       // creates markers
@@ -75,6 +84,7 @@ export default class MapContainer extends Component {
     const style = { // MUST specify dimensions of the Google map or it will not work. Also works best when style is specified inside the render function and created as an object
       width: '100vw', // 90vw basically means take up 90% of the width screen. px also works.
       height: '100vh', // 75vh similarly will take up roughly 75% of the height of the screen. px also works.
+
     }
 
     return ( // in our return function you must return a div with ref='map' and style.
