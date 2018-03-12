@@ -57,8 +57,6 @@ export default class MapContainer extends Component {
     });
 
       this.map = new maps.Map(node, mapConfig);
-        mapTypeId: 'roadmap' // optional main map layer. Terrain, satellite, hybrid or roadmap--if unspecified, defaults to roadmap.
-      })
 
       this.map = new maps.Map(node, mapConfig);
 
@@ -70,21 +68,21 @@ export default class MapContainer extends Component {
 
       var markerArr = this.state.list;
       // creates markers
+      console.log(markerArr);
       for (var i = 0; i < markerArr.length; i++) {
         const marker = new google.maps.Marker({
           position: {
             lat: parseFloat(markerArr[i].Position.lat),
             lng: parseFloat(markerArr[i].Position.lng) },
           map: this.map,
-          title: markerArr[i].Name
+          title: markerArr[i].Name,
+          Stop_Code: markerArr[i].Stop_Code
         });
 
         marker.addListener('click', function() {
         this.map.setCenter(this.position);
 
-
-
-        infoWindow.setContent('pysakin nimi taha');
+        infoWindow.setContent("pysakin nimi: "+marker.title+" Numero: "+marker.Stop_Code);
         infoWindow.open(this.map, marker);
 
         });
