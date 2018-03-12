@@ -25,11 +25,12 @@ handleChange(event) {
     change[event.target.name] = event.target.value
     this.setState(change)
 
-    if(event.target.name === "Stop_Code"){
-      fetch("/timetables/"+event.target.value).then(res =>res.json()).then((result)=>{
+    if(event.target.name === "Stop_Code" && event.target.value.length > 0 ){
+      fetch("/timetables/find/"+event.target.value).then(res =>res.json()).then((result)=>{
 
       const data = result.map((line) =><option value={line.Stop_Code}/>);
       this.setState({list: data})
+      console.log(data);
     });
 }
 }
@@ -46,7 +47,7 @@ handleSubmit(event) {
   var minTime = splitTime[1];
 
 
-fetch('/timetables/new', {
+fetch('/timetables/update', {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
@@ -54,14 +55,8 @@ fetch('/timetables/new', {
 
     body: JSON.stringify({
       Stop_Code: this.state.Stop_Code,
-
-      stopTimesObj: { dayType : this.state.day,
-                    hours : {
-                      hour: hourTime,
-                      allData: { data: {min: minTime, Line_Code: this.state.line_Code} }
-                    }
-                  }
-  }),
+      Time : {dayType : this.state.day, Stop_time: this.state.Stop_Time }
+    }),
 })
   .then(function(res){ return res.json(); })
   .then(function(data){ console.log( JSON.stringify( data ) ) });

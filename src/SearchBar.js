@@ -4,30 +4,37 @@ export default class searchBar extends Component {
   constructor(props) {
   super(props);
   this.state = {
-    list: ""
+    route: "",
+    stop : "",
+    all: ""
   };
   this.handleChange = this.handleChange.bind(this);
 }
 handleChange(event){
-  var arr = [];
+if(event.target.value > 0){
   fetch("/routes/"+event.target.value).then(res => res.json()).then((result) => {
-    const data = result.map((line) =><option value={line.Line_Code}/>);
-    data.map((tieto) => arr.push(tieto));
+    const data = result.map((line) =><option value={"Route: "+line.Line_Code} />);
+    this.setState({route: data})
   });
 
   fetch("/stops/"+event.target.value).then(res => res.json()).then((result) => {
-    const data = result.map((line) =><option value={line.Stop_Code}/>);
-    data.map((tieto) => arr.push(tieto));
+    const data = result.map((line) =><option value={"Stop: "+line.Stop_Code}/>);
+    this.setState({stop: data})
   });
-  console.log(arr);
-  this.setState({list: arr});
+}
+}
+combiner(){
+  var rou = this.state.route;
+  const all = rou.concat(this.state.stop);
+  return all
 }
 
   render() {
+
     return (
       <div>
-      <input type="text" placeholder="Search..."id="Search" list={"SandR"} onChange={this.handleChange.bind(this)} style={{width: '100%', height: 30}}/>
-      <datalist id ="SandR">{this.state.list}</datalist>
+      <input type="text" placeholder="Search..."id="Search" list={"SandR"} onChange={this.handleChange.bind(this)} value={this.state.name} style={{width: '100%', height: 30}}/>
+      <datalist id="SandR">{this.combiner()}</datalist>
       </div>
     )
   }
