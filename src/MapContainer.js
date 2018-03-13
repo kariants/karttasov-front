@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom'
+import ReactDOM from 'react-dom';
 
 export default class MapContainer extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      list: ''
+      list: '',
     }
   };
 
@@ -46,8 +46,6 @@ export default class MapContainer extends Component {
         styles : [
         {
           featureType:"poi",
-
-          elementType: "labels",
           stylers: [{ visibility: "off" }]
         },{
           featureType: "transit.station",
@@ -82,8 +80,14 @@ export default class MapContainer extends Component {
         marker.addListener('click', function() {
         this.map.setCenter(this.position);
 
-        infoWindow.setContent("pysakin nimi: "+marker.title+" Numero: "+marker.Stop_Code);
-        infoWindow.open(this.map, marker);
+        fetch("/TimeTables/find/"+marker.Stop_Code).then(res =>res.json()).then((result)=>{
+          console.log(result);
+          infoWindow.setContent("Stop name: " + marker.title + " Stop number: " + marker.Stop_Code+" Stop Times: "+result[0].Times[0].Stop_Time);
+          infoWindow.open(this.map, marker);
+
+        });
+
+
 
         });
         console.log(marker);
