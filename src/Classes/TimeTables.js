@@ -12,7 +12,8 @@ export class TimeTables extends React.Component {
     minute: '',
     line_Code: '',
     Stop_Time: '',
-    list: ''
+    list: '',
+    lineCodeList: ''
 
   };
 
@@ -26,13 +27,25 @@ handleChange(event) {
     this.setState(change)
 
     if(event.target.name === "Stop_Code" && event.target.value.length > 0 ){
-      fetch("/timetables/find/"+event.target.value).then(res =>res.json()).then((result)=>{
+      fetch("/stops/"+event.target.value).then(res =>res.json()).then((result)=>{
 
       const data = result.map((line) =><option value={line.Stop_Code}/>);
       this.setState({list: data})
       console.log(data);
     });
-}
+    }
+
+    if (event.target.name === "line_Code" && event.target.value.length > 0 ) {
+      fetch("/routes/" + event.target.value).then(res =>res.json()).then((result)=>{
+        const data = result.map((line) =><option value={line.Line_Code}/>);
+        this.setState({lineCodeList: data})
+        console.log(data);
+      });
+    }
+
+
+
+
 }
 
 handleSubmit(event) {
@@ -55,7 +68,7 @@ fetch('/timetables/update', {
 
     body: JSON.stringify({
       Stop_Code: this.state.Stop_Code,
-      Time : {dayType : this.state.day, Stop_Time: this.state.Stop_Time, Line_Code: this.state.line_Code}
+      Time : {dayType : this.state.day, hour: hourTime, mim: minTime}
     }),
 })
   .then(function(res){ return res.json(); })
@@ -74,7 +87,8 @@ render() {
             </label><br/>
 
             <label htmlFor="Line_Code">Line Code
-            <input type="text" name="line_Code" id="line_Code" onChange={this.handleChange.bind(this)} value={this.state.name}/>
+            <input type="text" name="line_Code" id="line_Code" list={"LineCodeItem"} onChange={this.handleChange.bind(this)} value={this.state.name}/>
+            <datalist id="LineCodeItem">{this.state.lineCodeList}</datalist>
             </label><br/>
 
             <label htmlFor="Stop_Time">Stop Times
