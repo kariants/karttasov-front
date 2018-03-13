@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Post from './PostNew.js';
+import Post from './PostCombiner.js';
 import MapsRenderer from './MapsRenderer.js';
 import SearchBar from './SearchBar.js';
 import LeftDiv from './LeftDiv.js';

@@ -46,8 +46,8 @@
   background-color: white;
 }
 #post {
-  width: 336px;
-  height: 190px;
+  width: auto;
+  height: auto;
   margin-right:  15px;
   padding-left: 5px;
   margin-top: 5px;
@@ -55,8 +55,8 @@
   background-color: white;
   position: fixed;
   z-index: 10;
-  top: 15px;
-  right:300px;
+  top: 2.5em;
+  right:1.5em;
 }
 
 @keyframes App-logo-spin {

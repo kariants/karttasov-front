@@ -1,11 +1,11 @@
 #form_list li {
   display:inline;
-  padding-left: 15px;
-  padding-right: 15px;
+  padding-left: 0.5em;
   list-style-position:inside;
 
 }
 #form_list{
+  width: auto;
   border: 1px solid black;
 }
 #form_list li:active{

@@ -1,13 +1,10 @@
 import React from 'react';
-import Stop from './Classes/Stop.js';
-import TimeTables from "./Classes/TimeTables.js";
-import Routes from "./Classes/Routes.js";
+
 import "./PostNew.css"
 
-class Post extends React.Component{
+export default class Post extends React.Component{
   constructor(props) {
   super(props);
-  this.state = < Stop />;
 
   this.handleClick = this.handleClick.bind(this);
 }
@@ -15,32 +12,19 @@ class Post extends React.Component{
 
 
 handleClick(event) {
-  console.log(event.target.id);
-  if(event.target.id === "Stop_button"){
-    this.setState(<Stop />)
-  }else if (event.target.id === "Routes_button") {
-    this.setState(<Routes />)
-  }else if(event.target.id === "TimeTables_button"){
-    this.setState(<TimeTables />)
+    this.props.callback(event.target.id)
   }
 
-
-}
-
   render(){
-
     return(
-      <div className="Post">
+      <div id="PostButton">
       <ul id="form_list">
         <li role="button" id="Stop_button" onClick={this.handleClick.bind(this)}>Stop</li>
         <li role="button" id="Routes_button" onClick={this.handleClick.bind(this)}>Routes</li>
         <li role="button" id="TimeTables_button" onClick={this.handleClick.bind(this)}>Time Tables</li>
       </ul>
-      <div>{this.state}</div>
       </div>
-
     );
   }
 
 }
-export default Post;

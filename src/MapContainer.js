@@ -75,14 +75,13 @@ export default class MapContainer extends Component {
         });
 
         marker.addListener('click', (event) => {
-        this.map.setCenter(this.position);
 
           fetch("/timetables/find/"+marker.Stop_Code).then(res => res.json()).then((result) =>{
               this.props.callback(marker,result);
           })
 
 
-          infoWindow.setContent("Stop name: " + marker.title + " Stop number: " + marker.Stop_Code+"<button>reitti</button>");
+          infoWindow.setContent("Stop name: " + marker.title + " Stop number: " + marker.Stop_Code);
           infoWindow.open(this.map, marker);
 
         });
