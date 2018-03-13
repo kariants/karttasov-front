@@ -26,9 +26,6 @@ export default class MapContainer extends Component {
     this.loadMap(); // call loadMap function to load the google map
   }
 
-
-
-
   loadMap() {
 
     if (this.props && this.props.google) { // checks to make sure that props have been passed
@@ -77,19 +74,16 @@ export default class MapContainer extends Component {
           Stop_Code: markerArr[i].Stop_Code
         });
 
-        marker.addListener('click', function() {
+        marker.addListener('click', (event) => {
         this.map.setCenter(this.position);
 
-        fetch("/TimeTables/find/"+marker.Stop_Code).then(res =>res.json()).then((result)=>{
-          console.log(result);
-          infoWindow.setContent("Stop name: " + marker.title + " Stop number: " + marker.Stop_Code+" Stop Times: "+result[0].Times[0].Stop_Time);
+          this.props.callback(marker);
+
+          infoWindow.setContent("Stop name: " + marker.title + " Stop number: " + marker.Stop_Code+"button>reitti</button>");
           infoWindow.open(this.map, marker);
 
         });
 
-
-
-        });
         console.log(marker);
       }
 

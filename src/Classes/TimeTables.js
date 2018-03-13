@@ -39,14 +39,6 @@ handleSubmit(event) {
 //  console.log(this);
   event.preventDefault();
 
-  var timeStr = this.state.Stop_Time;
-  var splitTime = timeStr.split(':');
-
-
-  var hourTime = splitTime[0];
-  var minTime = splitTime[1];
-
-
 fetch('/timetables/update', {
     method: 'POST',
     headers: {
