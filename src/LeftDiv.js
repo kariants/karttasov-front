@@ -8,7 +8,10 @@ export default class App extends React.Component {
 
   render() {
     return (
+      <div>
       <p>{this.props.marker.title}</p>
+      <p>{this.props.Stop_Times.Stop_Code}</p>
+      </div>
     );
 }
 }

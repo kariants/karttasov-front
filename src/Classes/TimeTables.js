@@ -60,7 +60,7 @@ fetch('/timetables/update', {
 
     body: JSON.stringify({
       Stop_Code: this.state.Stop_Code,
-      Time : {dayType : this.state.day, hour: hourTime, mim: minTime}
+      Time : {dayType : this.state.day, Stop_Time: this.state.Stop_Time, Line_Code:this.state.line_Code}
     }),
 })
   .then(function(res){ return res.json(); })

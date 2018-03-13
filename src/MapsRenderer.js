@@ -13,8 +13,8 @@ class MapsRenderer extends Component {
     });
 
   }
-callback = (marker) =>{
-      this.props.callback(marker)
+callback = (marker,Stop_Times) =>{
+      this.props.callback(marker,Stop_Times)
   }
 
   render() {
