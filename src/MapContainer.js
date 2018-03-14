@@ -63,7 +63,6 @@ export default class MapContainer extends Component {
 
       var markerArr = this.state.list;
       // creates markers
-      console.log(markerArr);
       for (var i = 0; i < markerArr.length; i++) {
         const marker = new google.maps.Marker({
           position: {
@@ -75,18 +74,17 @@ export default class MapContainer extends Component {
         });
 
         marker.addListener('click', (event) => {
-
-          fetch("/timetables/find/"+marker.Stop_Code).then(res => res.json()).then((result) =>{
+       fetch("/timetables/find/"+marker.Stop_Code).then(res => res.json()).then((result) =>{
               this.props.callback(marker,result);
           })
 
-
           infoWindow.setContent("Stop name: " + marker.title + " Stop number: " + marker.Stop_Code);
           infoWindow.open(this.map, marker);
-
+          return false;
         });
 
         console.log(marker);
+
       }
 
 

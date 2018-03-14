@@ -42,8 +42,18 @@ fetch("/routes/new",{
       Stop_Code:this.state.stopCodeList
     }),
 })
-.then(function(res){ return res.json(); })
-.then(function(data){ console.log( JSON.stringify( data ) ) });
+.then(res => res.json())
+.then((data) =>{
+   console.log(data);
+   if(data.ok === 1){
+    this.setState({
+      Agency: '',
+      Description: '',
+      Line_Code: '',
+      stopCodeList:''
+    })
+
+}});
 
 }
   render() {
