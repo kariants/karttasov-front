@@ -16,7 +16,7 @@ export class Routes extends React.Component {
 }
 
 stopCodeCallback = (stopCodeList) =>{
-      this.props.callback(stopCodeList);
+      this.setState({stopCodeList: stopCodeList});
   }
 
 handleChange(event) {
@@ -39,7 +39,7 @@ fetch("/routes/new",{
       Agency:this.state.Agency,
       Description:this.state.Description,
       Line_Code:this.state.Line_Code,
-      Stop_Code:this.state.Stop_Code
+      Stop_Code:this.state.stopCodeList
     }),
 })
 .then(function(res){ return res.json(); })
@@ -72,8 +72,6 @@ fetch("/routes/new",{
             </fieldset>
               <input type="submit" value="Submit"/>
             </form>
-
-
 
       </div>
     );

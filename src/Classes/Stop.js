@@ -42,8 +42,18 @@ fetch('/stops/new', {
     Desc: this.state.Desc
 }),
 })
-.then(function(res){ return res.json(); })
-.then(function(data){ console.log( JSON.stringify( data ) ) });
+.then(res => res.json())
+.then((data) =>{
+   console.log(data);
+   if(data.ok === 1){
+    this.setState({
+      Stop_Code: '',
+      Name: '',
+      Desc: '',
+      Lat:'',
+      Lng:''
+    })
+}});
 
 
 
@@ -55,7 +65,7 @@ fetch('/stops/new', {
 
             <p>Bus Stops Form</p>
 
-            <form onSubmit={this.handleSubmit}>
+            <form id="Stopform" onSubmit={this.handleSubmit}>
 
               <p>Stop Code: </p>
               <input required type="text" name="Stop_Code" id="Stop_Code" onChange={this.handleChange.bind(this)} value={this.state.Stop_Code}/>
@@ -65,8 +75,12 @@ fetch('/stops/new', {
               <input required type="text" name="Name" id="Name" onChange={this.handleChange.bind(this)} value={this.state.name}/>
               <br/>
 
+              <label htmlFor="Desc">Description
+              <input required type="text" name="Desc" id="Desc" onChange={this.handleChange.bind(this)} value={this.state.Desc}/>
+              </label><br/>
+
               <fieldset>
-               <legend>Postion:</legend>
+               <legend>Position:</legend>
               <label htmlFor="Latitude">Latitude
               <input required type="number" name="Lat" step="0.000001" id="Lat" placeholder="Latitude" onChange={this.handleChange.bind(this)} value={this.state.Lat}/>
               </label><br/>
@@ -76,9 +90,8 @@ fetch('/stops/new', {
               <input required type="number" name="Lng" step="0.000001" id="Lng" placeholder="Longitude" onChange={this.handleChange.bind(this)} value={this.state.Lng}/>
               </label><br/>
               </ fieldset>
-              <label htmlFor="Desc">Description
-              <input required type="text" name="Desc" id="Desc" onChange={this.handleChange.bind(this)} value={this.state.Desc}/>
-              </label><br/>
+
+
 
               <input type="submit" value="Submit" />
             </form>
