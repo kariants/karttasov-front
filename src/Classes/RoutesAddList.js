@@ -7,12 +7,20 @@ export default class RoutesAddList extends Component {
     super(props);
     this.state = {
       term: '',
-      items: []
+      items: [],
+      list: ''
     };
   }
 
   onChange = (event) => {
     this.setState({ term: event.target.value });
+
+    fetch("/stops/"+event.target.value).then(res =>res.json()).then((result)=>{
+
+    const data = result.map((line) =><option value={line.Stop_Code}/>);
+    this.setState({list: data})
+    console.log(data);
+    });
 
   }
 
@@ -32,7 +40,8 @@ export default class RoutesAddList extends Component {
     return(
       <div>
         <form className="RoutesAddList" onSubmit={this.onSubmit}>
-          <input value={this.state.term} onChange={this.onChange} />
+          <input value={this.state.term} list='item' onChange={this.onChange} />
+          <datalist id="item">{this.state.list}</datalist>
           <button>Add</button>
         </form>
 
