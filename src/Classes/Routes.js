@@ -65,8 +65,11 @@ fetch("/routes/new",{
             <input type="text" name="Agency" id="Agency" onChange={this.handleChange.bind(this)} value={this.state.name}/>
             </label><br/>
 
+            <fieldset>
+            <legend>Stop Code</legend>
             <RoutesAddList callback={this.stopCodeCallback}/>
 
+            </fieldset>
               <input type="submit" value="Submit"/>
             </form>
 
