@@ -1,4 +1,5 @@
 import React from 'react';
+import RoutesAddList from './RoutesAddList.js';
 
 export class Routes extends React.Component {
   constructor(props) {
@@ -6,12 +7,18 @@ export class Routes extends React.Component {
   this.state = {
     Agency: '',
     Description: '',
-    Line_Code: ''
+    Line_Code: '',
+    stopCodeList: ''
   };
 
   this.handleChange = this.handleChange.bind(this);
   this.handleSubmit = this.handleSubmit.bind(this);
 }
+
+stopCodeCallback = (stopCodeList) =>{
+      this.props.callback(stopCodeList);
+  }
+
 handleChange(event) {
   var change = {}
     change[event.target.name] = event.target.value
@@ -31,7 +38,8 @@ fetch("/routes/new",{
     body: JSON.stringify({
       Agency:this.state.Agency,
       Description:this.state.Description,
-      Line_Code:this.state.Line_Code
+      Line_Code:this.state.Line_Code,
+      Stop_Code:this.state.Stop_Code
     }),
 })
 .then(function(res){ return res.json(); })
@@ -57,8 +65,13 @@ fetch("/routes/new",{
             <input type="text" name="Agency" id="Agency" onChange={this.handleChange.bind(this)} value={this.state.name}/>
             </label><br/>
 
+            <RoutesAddList callback={this.stopCodeCallback}/>
+
               <input type="submit" value="Submit"/>
             </form>
+
+
+
       </div>
     );
   }
