@@ -1,0 +1,17 @@
+
+#PostButton{
+  width: auto;
+  position: relative;
+
+}
+#form_list{
+  width: 100%;
+  padding: 0;
+  display: table;
+     table-layout: fixed;
+}
+#form_list > li {
+  display: table-cell;
+  border: 1px solid black;
+  text-align: center
+}

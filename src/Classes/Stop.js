@@ -1,4 +1,5 @@
 import React from 'react';
+import './Stop.css'
 
 export class Stop extends React.Component {
 
@@ -56,22 +57,25 @@ fetch('/stops/new', {
 
             <form onSubmit={this.handleSubmit}>
 
-              <label htmlFor="Stop_Code">Stop Code
+              <p>Stop Code: </p>
               <input required type="text" name="Stop_Code" id="Stop_Code" onChange={this.handleChange.bind(this)} value={this.state.Stop_Code}/>
-              </label><br/>
+              <br/>
 
-              <label htmlFor="Name">Name
+              <p>Name: </p>
               <input required type="text" name="Name" id="Name" onChange={this.handleChange.bind(this)} value={this.state.name}/>
-              </label><br/>
+              <br/>
 
+              <fieldset>
+               <legend>Postion:</legend>
               <label htmlFor="Latitude">Latitude
               <input required type="number" name="Lat" step="0.000001" id="Lat" placeholder="Latitude" onChange={this.handleChange.bind(this)} value={this.state.Lat}/>
-              </label>
+              </label><br/>
+
 
               <label htmlFor="Longitude">Longitude
               <input required type="number" name="Lng" step="0.000001" id="Lng" placeholder="Longitude" onChange={this.handleChange.bind(this)} value={this.state.Lng}/>
               </label><br/>
-
+              </ fieldset>
               <label htmlFor="Desc">Description
               <input required type="text" name="Desc" id="Desc" onChange={this.handleChange.bind(this)} value={this.state.Desc}/>
               </label><br/>

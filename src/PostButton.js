@@ -1,6 +1,6 @@
 import React from 'react';
 
-import "./PostNew.css"
+import "./PostButton.css"
 
 export default class Post extends React.Component{
   constructor(props) {
@@ -18,11 +18,11 @@ handleClick(event) {
   render(){
     return(
       <div id="PostButton">
-      <ul id="form_list">
+      <ol id="form_list">
         <li role="button" id="Stop_button" onClick={this.handleClick.bind(this)}>Stop</li>
         <li role="button" id="Routes_button" onClick={this.handleClick.bind(this)}>Routes</li>
-        <li role="button" id="TimeTables_button" onClick={this.handleClick.bind(this)}>Time Tables</li>
-      </ul>
+        <li role="button" id="TimeTables_button" onClick={this.handleClick.bind(this)}>Tables</li>
+      </ol>
       </div>
     );
   }
