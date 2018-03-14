@@ -10,8 +10,8 @@ export class Stop extends React.Component {
     Name: '',
     Desc: '',
     Lat:'',
-    Lng:''
-
+    Lng:'',
+    list:''
   };
 
   this.handleChange = this.handleChange.bind(this);
@@ -21,7 +21,27 @@ export class Stop extends React.Component {
 handleChange(event) {
   var change = {}
     change[event.target.name] = event.target.value
-    this.setState(change)
+    this.setState(change);
+
+    if(event.target.name === "Stop_Code"){
+
+    fetch("/stops/"+event.target.value).then(res =>res.json()).then((result)=>{
+
+      if(result.length >1){
+    const data = result.map((line) =><option value={line.Stop_Code}/>);
+    this.setState({list: data})
+
+  }else{
+      this.setState({
+      Stop_Code: result[0].Stop_Code,
+      Name: result[0].Name,
+      Desc: result[0].Desc,
+      Lat: result[0].Position.lat,
+      Lng: result[0].Position.lng
+    });
+  }
+    });
+}
 }
 
 handleSubmit(event) {
@@ -68,7 +88,8 @@ fetch('/stops/new', {
             <form id="Stopform" onSubmit={this.handleSubmit}>
 
               <p>Stop Code: </p>
-              <input required type="text" name="Stop_Code" id="Stop_Code" onChange={this.handleChange.bind(this)} value={this.state.Stop_Code}/>
+              <input required type="text" list="item" name="Stop_Code" id="Stop_Code" onChange={this.handleChange.bind(this)} value={this.state.Stop_Code}/>
+              <datalist id="item">{this.state.list}</datalist>
               <br/>
 
               <p>Name: </p>
