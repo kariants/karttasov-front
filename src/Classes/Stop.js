@@ -72,23 +72,23 @@ fetch('/stops/new', {
               <br/>
 
               <p>Name: </p>
-              <input required type="text" name="Name" id="Name" onChange={this.handleChange.bind(this)} value={this.state.name}/>
+              <input required type="text" name="Name" id="Name" onChange={this.handleChange.bind(this)} value={this.state.Name}/>
               <br/>
 
-              <label htmlFor="Desc">Description
+              <p>Desc: </p>
               <input required type="text" name="Desc" id="Desc" onChange={this.handleChange.bind(this)} value={this.state.Desc}/>
-              </label><br/>
+              <br/>
 
               <fieldset>
                <legend>Position:</legend>
-              <label htmlFor="Latitude">Latitude
+              <p>Latitude: </p>
               <input required type="number" name="Lat" step="0.000001" id="Lat" placeholder="Latitude" onChange={this.handleChange.bind(this)} value={this.state.Lat}/>
-              </label><br/>
+              <br/>
 
 
-              <label htmlFor="Longitude">Longitude
+              <p>Longitude: </p>
               <input required type="number" name="Lng" step="0.000001" id="Lng" placeholder="Longitude" onChange={this.handleChange.bind(this)} value={this.state.Lng}/>
-              </label><br/>
+              <br/>
               </ fieldset>
 
 
