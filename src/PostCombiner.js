@@ -1,6 +1,7 @@
 import React from 'react';
 import Button from './PostButton.js';
 import Form from './PostForms.js'
+import './PostCombiner.css'
 
 export default class Post extends React.Component{
   constructor(props) {
