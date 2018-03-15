@@ -27,7 +27,7 @@ handleChange(event) {
 
     fetch("/stops/"+event.target.value).then(res =>res.json()).then((result)=>{
 
-      if(result.length >1){
+      if(result.length > 1 || result.length === 0){
     const data = result.map((line) =><option value={line.Stop_Code}/>);
     this.setState({list: data})
 
@@ -59,13 +59,13 @@ remove(event){
     .then((data) =>{
        console.log(data);
        if(data.ok === 1){
-        this.setState({
-          Stop_Code: '',
-          Name: '',
-          Desc: '',
-          Lat:'',
-          Lng:''
-        })
+       this.setState({
+         Stop_Code: '',
+         Name: '',
+         Desc: '',
+         Lat:'',
+         Lng:''
+       },() =>{ this.props.callback({Stop:this.state})});
 }});
 }
 handleSubmit(event) {
@@ -96,7 +96,7 @@ fetch('/stops/new', {
       Desc: '',
       Lat:'',
       Lng:''
-    })
+    },() =>{ this.props.callback({Stop:this.state})})
 }});
 
 
