@@ -5,10 +5,11 @@ export class Routes extends React.Component {
   constructor(props) {
   super(props);
   this.state = {
-    Agency: '',
-    Description: '',
-    Line_Code: '',
-    stopCodeList: ''
+    Agency: this.props.Routes.Agency,
+    Description: this.props.Routes.Description,
+    Line_Code: this.props.Routes.Line_Code,
+    stopCodeList: this.props.Routes.stopCodeList,
+    list:this.props.Routes.stopCodeList
   };
 
   this.handleChange = this.handleChange.bind(this);
@@ -22,7 +23,27 @@ stopCodeCallback = (stopCodeList) =>{
 handleChange(event) {
   var change = {}
     change[event.target.name] = event.target.value
-    this.setState(change)
+    this.setState(change,()=>{this.props.callback({Routes:this.state})})
+
+    if(event.target.name === "Line_Code"){
+
+      fetch("/routes/"+event.target.value).then(res =>res.json()).then((result)=>{
+
+      if(result.length >1){
+      const data = result.map((line) =><option value={line.Stop_Code}/>);
+      this.setState({list: data})
+
+    }else{
+      this.setState({
+        Agency: result[0].Agency,
+        Line_Code: result[0].Line_Code,
+        Description: result[0].Desc,
+        stopCodeList: result[0].stopCodeList,
+      },() =>{ this.props.callback({Routes:this.state})})
+
+    }
+  });
+}
 }
 
 
@@ -64,15 +85,15 @@ fetch("/routes/new",{
             <form onSubmit={this.handleSubmit}>
 
             <label htmlFor="Line_Code">Line Code
-            <input type="Line_Number" name="Line_Code" id="Line_Code" onChange={this.handleChange.bind(this)} value={this.state.name}/>
+            <input required type="text" name="Line_Code" id="Line_Code" onChange={this.handleChange.bind(this)} value={this.state.Line_Code}/>
             </label><br/>
 
             <label htmlFor="Description">Description
-            <input type="Description" name="Description" id="Description" onChange={this.handleChange.bind(this)} value={this.state.name}/>
+            <input required type="text" name="Description" id="Description" onChange={this.handleChange.bind(this)} value={this.state.Description}/>
             </label><br/>
 
             <label htmlFor="Agency">Agency
-            <input type="text" name="Agency" id="Agency" onChange={this.handleChange.bind(this)} value={this.state.name}/>
+            <input required type="text" name="Agency" id="Agency" onChange={this.handleChange.bind(this)} value={this.state.Agency}/>
             </label><br/>
 
             <fieldset>

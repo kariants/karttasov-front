@@ -6,12 +6,12 @@ export class Stop extends React.Component {
   constructor(props) {
   super(props);
   this.state = {
-    Stop_Code: '',
-    Name: '',
-    Desc: '',
-    Lat:'',
-    Lng:'',
-    list:''
+    Stop_Code: this.props.Stop.Stop_Code,
+    Name: this.props.Stop.Name,
+    Desc: this.props.Stop.Desc,
+    Lat:this.props.Stop.Lat,
+    Lng:this.props.Stop.Lng,
+    list:this.props.Stop.list
   };
 
   this.handleChange = this.handleChange.bind(this);
@@ -21,7 +21,7 @@ export class Stop extends React.Component {
 handleChange(event) {
   var change = {}
     change[event.target.name] = event.target.value
-    this.setState(change);
+    this.setState(change,()=>{this.props.callback({Stop:this.state})})
 
     if(event.target.name === "Stop_Code"){
 
@@ -32,13 +32,13 @@ handleChange(event) {
     this.setState({list: data})
 
   }else{
-      this.setState({
+    this.setState({
       Stop_Code: result[0].Stop_Code,
       Name: result[0].Name,
       Desc: result[0].Desc,
       Lat: result[0].Position.lat,
       Lng: result[0].Position.lng
-    });
+    },() =>{ this.props.callback({Stop:this.state})})
   }
     });
 }

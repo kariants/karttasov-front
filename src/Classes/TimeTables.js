@@ -6,14 +6,12 @@ export class TimeTables extends React.Component {
   constructor(props) {
   super(props);
   this.state = {
-    Stop_Code: '',
-    day: 'Weekday',
-    hour: '',
-    minute: '',
-    line_Code: '',
-    Stop_Time: '',
-    list: '',
-    lineCodeList: ''
+    Stop_Code: this.props.TimeTables.Stop_Code,
+    day: this.props.TimeTables.day,
+    line_Code: this.props.TimeTables.line_Code,
+    Stop_Time: this.props.TimeTables.Stop_Code,
+    list: this.props.TimeTables.list,
+    lineCodeList: this.props.TimeTables.lineCodeList
 
   };
 
@@ -24,13 +22,13 @@ export class TimeTables extends React.Component {
 handleChange(event) {
   var change = {}
     change[event.target.name] = event.target.value
-    this.setState(change)
+    this.setState(change,()=>{this.props.callback({TimeTables:this.state})})
 
     if(event.target.name === "Stop_Code" && event.target.value.length > 0 ){
       fetch("/stops/"+event.target.value).then(res =>res.json()).then((result)=>{
 
       const data = result.map((line) =><option value={line.Stop_Code}/>);
-      this.setState({list: data})
+      this.setState({list: data},()=>{this.props.callback({TimeTables:this.state})})
       console.log(data);
     });
     }
@@ -38,7 +36,7 @@ handleChange(event) {
     if (event.target.name === "line_Code" && event.target.value.length > 0 ) {
       fetch("/routes/" + event.target.value).then(res =>res.json()).then((result)=>{
         const data = result.map((line) =><option value={line.Line_Code}/>);
-        this.setState({lineCodeList: data})
+        this.setState({lineCodeList: data},()=>{this.props.callback({TimeTables:this.state})})
         console.log(data);
       });
     }
@@ -74,17 +72,17 @@ render() {
     <p>Timetables Form</p>
           <form onSubmit={this.handleSubmit} id="timetables_form">
             <label htmlFor="Stop_Code">Stop Code
-            <input type="text" name="Stop_Code" id="Stop_Code" list={"item"} onChange={this.handleChange.bind(this)} value={this.state.name}/>
+            <input required type="text" name="Stop_Code" id="Stop_Code" list={"item"} onChange={this.handleChange.bind(this)} value={this.state.Stop_Code}/>
             <datalist id="item">{this.state.list}</datalist>
             </label><br/>
 
             <label htmlFor="Line_Code">Line Code
-            <input type="text" name="line_Code" id="line_Code" list={"LineCodeItem"} onChange={this.handleChange.bind(this)} value={this.state.name}/>
+            <input required type="text" name="line_Code" id="line_Code" list={"LineCodeItem"} onChange={this.handleChange.bind(this)} value={this.state.line_Code}/>
             <datalist id="LineCodeItem">{this.state.lineCodeList}</datalist>
             </label><br/>
 
             <label htmlFor="Stop_Time">Stop Times
-            <input type="time" name="Stop_Time" id="Stop_Time" onChange={this.handleChange.bind(this)} value={this.state.name}/>
+            <input required type="time" name="Stop_Time" id="Stop_Time" onChange={this.handleChange.bind(this)} value={this.state.Stop_Time}/>
             </label><br/>
 
             <div>
