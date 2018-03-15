@@ -43,7 +43,31 @@ handleChange(event) {
     });
 }
 }
+remove(event){
 
+  event.preventDefault();
+  fetch('/stops/remove', {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type':'application/json'},
+
+      body: JSON.stringify({
+        Stop_Code: this.state.Stop_Code
+    }),
+  }).then(res => res.json())
+    .then((data) =>{
+       console.log(data);
+       if(data.ok === 1){
+        this.setState({
+          Stop_Code: '',
+          Name: '',
+          Desc: '',
+          Lat:'',
+          Lng:''
+        })
+}});
+}
 handleSubmit(event) {
   //console.log(this);
   event.preventDefault();
@@ -115,6 +139,7 @@ fetch('/stops/new', {
 
 
               <input type="submit" value="Submit" />
+              <button type="button" id="remove_button" onClick={this.remove.bind(this)}>Remove Stop</ button>
             </form>
       </div>
     );

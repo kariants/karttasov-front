@@ -18,3 +18,7 @@ form input{
   right: 0;
   width: 100%;
 }
+#remove_button{
+  postion:relative;
+  width:100%
+}
