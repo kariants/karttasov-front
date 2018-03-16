@@ -23,11 +23,15 @@ class MapsRenderer extends Component {
 
   }
 
+  callback = (marker, result) => {
+    this.props.callback(marker, result);
+  }
+
 
   render() {
     return (
       <div>
-        <MapContainer google={this.props.google} stopsList={this.state.list} />
+        <MapContainer google={this.props.google} stopsList={this.state.list} callback={this.callback}/>
       </div>
     );
   }

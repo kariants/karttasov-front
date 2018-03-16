@@ -10,13 +10,13 @@ export default class App extends Component {
     super(props);
     this.state = {
       marker: '',
-      Stop_Times:''
+      timetables: ''
     }
   }
-  callback = (marker,Stop_Times) =>{
+  callback = (marker, result) =>{
     this.setState({
       marker: marker,
-      Stop_Times: Stop_Times
+      timetables: result
     })
     }
   render() {
@@ -32,7 +32,7 @@ export default class App extends Component {
         <Post />
       </div>
       <div id="LeftDiv">
-        <LeftDiv marker ={this.state.marker} Stop_Times={this.state.Stop_Times}/>
+        <LeftDiv marker={this.state.marker} timetables={this.state.timetables} />
       </div>
       </div>
 

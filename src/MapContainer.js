@@ -7,18 +7,22 @@ export default class MapContainer extends Component {
     super(props);
     this.state = {
       list: '',
-      map: ''
+      map: '',
+      mapLoaded: ''
     }
 
   };
 
-componentWillReceiveProps(nextProps) {
 
+componentWillReceiveProps(nextProps) {
   if (nextProps.stopsList !== '') {
-    console.log(nextProps);
-    this.loadMap(); // call loadMap function to load the google map
+
+    if (this.state.mapLoaded === '') {
+      this.loadMap(); // call loadMap function to load the google map
+      this.setState({mapLoaded: 'loaded'});
+    }
+
     this.setState({list: nextProps.stopsList}, () => {
-      console.log(this.state)
       this.createMarkers();
     });
   }
@@ -53,7 +57,7 @@ componentDidUpdate() {
     });
       // creates a new Google map on the specified node (ref='map') with the specified configuration set above.
       this.map = new maps.Map(node, mapConfig);
-      this.setState({map: this.map}, () => {console.log(this.state);});
+      this.setState({map: this.map});
     }
   }
 
@@ -66,7 +70,6 @@ componentDidUpdate() {
 
     var markerArr = this.state.list;
     // creates markers
-    console.log(markerArr);
     for (var i = 0; i < markerArr.length; i++) {
       const marker = new google.maps.Marker({
         position: {
@@ -80,6 +83,12 @@ componentDidUpdate() {
       marker.addListener('click', (event) => {
         infoWindow.setContent( marker.Stop_Code   + " - " + marker.title);
         infoWindow.open(this.map, marker);
+
+        fetch("/timetables/" + marker.Stop_Code).then((result) => {
+          this.props.callback(marker, result);
+        });
+
+
         return false;
       });
 
