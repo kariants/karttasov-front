@@ -8,7 +8,7 @@ export class Routes extends React.Component {
     Agency: this.props.Routes.Agency,
     Description: this.props.Routes.Description,
     Line_Code: this.props.Routes.Line_Code,
-    stopCodeList: [this.props.Routes.stopCodeList],
+    stopCodeList: this.props.Routes.stopCodeList,
     list:this.props.Routes.list
   };
 
@@ -37,7 +37,9 @@ handleChange(event) {
         Agency: result[0].Agency,
         Line_Code: result[0].Line_Code,
         Description: result[0].Desc,
-        stopCodeList: result[0].Stop_Code},() =>{ this.props.callback({Routes:this.state})})
+        stopCodeList: result[0].Stop_Code},() =>{
+          console.log(this.state);
+           this.props.callback({Routes:this.state})})
 
     }
   });
@@ -62,7 +64,7 @@ remove(event){
          Agency: '',
          Description: '',
          Line_Code: '',
-         stopCodeList:'',
+         stopCodeList:[],
          list:''
        },() =>{ this.props.callback({Stop:this.state})});
 }});
@@ -94,7 +96,7 @@ fetch("/routes/new",{
       Agency: '',
       Description: '',
       Line_Code: '',
-      stopCodeList:'',
+      stopCodeList:[],
       list:''
     },() =>{ this.props.callback({Stop:this.state})})
 
