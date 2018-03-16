@@ -7,27 +7,28 @@ export default class MapContainer extends Component {
     super(props);
     this.state = {
       list: '',
+      map: ''
     }
+
   };
 
-  fetchStops() {
-  fetch("/stops/").then(res =>res.json()).then((result)=>{
-      this.setState({list: result})
+componentWillReceiveProps(nextProps) {
+
+  if (nextProps.stopsList !== '') {
+    console.log(nextProps);
+    this.loadMap(); // call loadMap function to load the google map
+    this.setState({list: nextProps.stopsList}, () => {
+      console.log(this.state)
+      this.createMarkers();
     });
   }
+}
 
-  componentDidMount() {
-    //loading stops from the database
-    this.fetchStops();
-    console.log(this.state.list);
-  }
-
-  componentDidUpdate() {
-    this.loadMap(); // call loadMap function to load the google map
-  }
+componentDidUpdate() {
+  this.createMarkers();
+}
 
   loadMap() {
-
     if (this.props && this.props.google) { // checks to make sure that props have been passed
       const {google} = this.props; // sets props equal to google
       const maps = google.maps; // sets maps to google maps props
@@ -50,50 +51,39 @@ export default class MapContainer extends Component {
         }
       ]
     });
-
-      this.map = new maps.Map(node, mapConfig);
-
-      this.map = new maps.Map(node, mapConfig);
-
-      var infoWindow = new google.maps.InfoWindow({
-			content: null
-		  });
-
       // creates a new Google map on the specified node (ref='map') with the specified configuration set above.
+      this.map = new maps.Map(node, mapConfig);
+      this.setState({map: this.map}, () => {console.log(this.state);});
+    }
+  }
 
-      var markerArr = this.state.list;
-      // creates markers
-      for (var i = 0; i < markerArr.length; i++) {
-        const marker = new google.maps.Marker({
-          position: {
-            lat: parseFloat(markerArr[i].Position.lat),
-            lng: parseFloat(markerArr[i].Position.lng) },
-          map: this.map,
-          title: markerArr[i].Name,
-          Stop_Code: markerArr[i].Stop_Code
-        });
+  createMarkers() {
+    const google = this.props.google;
 
-        marker.addListener('click', (event) => {
-       fetch("/timetables/find/"+marker.Stop_Code).then(res => res.json()).then((result) =>{
-              this.props.callback(marker,result);
-          })
+    var infoWindow = new google.maps.InfoWindow({
+      content: null
+    });
 
-          infoWindow.setContent("Stop name: " + marker.title + " Stop number: " + marker.Stop_Code);
-          infoWindow.open(this.map, marker);
-          return false;
-        });
+    var markerArr = this.state.list;
+    // creates markers
+    console.log(markerArr);
+    for (var i = 0; i < markerArr.length; i++) {
+      const marker = new google.maps.Marker({
+        position: {
+          lat: parseFloat(markerArr[i].Position.lat),
+          lng: parseFloat(markerArr[i].Position.lng) },
+        map: this.state.map,
+        title: markerArr[i].Name,
+        Stop_Code: markerArr[i].Stop_Code
+      });
 
-        console.log(marker);
-
-      }
-
-
-
-
-
+      marker.addListener('click', (event) => {
+        infoWindow.setContent( marker.Stop_Code   + " - " + marker.title);
+        infoWindow.open(this.map, marker);
+        return false;
+      });
 
     }
-
   }
 
 
