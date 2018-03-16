@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import List from './List';
 
 export default class RoutesAddList extends Component {
 
@@ -7,45 +6,39 @@ export default class RoutesAddList extends Component {
     super(props);
     this.state = {
       term: '',
-      items: [],
+      items: [this.props.stopCodeList],
       list: ''
     };
   }
 
-  onChange = (event) => {
+  onChange(event){
     this.setState({ term: event.target.value });
 
     fetch("/stops/"+event.target.value).then(res =>res.json()).then((result)=>{
 
-    const data = result.map((line) =><option value={line.Stop_Code}/>);
+    const data = result.map((line) =><option key={line.Stop_Code} value={line.Stop_Code}/>);
     this.setState({list: data})
-    console.log(data);
     });
 
   }
 
-  onSubmit = (event) => {
-    event.preventDefault()
-    this.setState({
-      term: '',
-      items: [...this.state.items, this.state.term]
-    });
-
-    this.props.callback(this.state.items);
-  }
-
-
+add(){
+  this.setState({
+    term: '',
+    items: [...this.state.items, this.state.term]
+  }, () =>{this.props.callback(this.state.items)});
+}
 
   render() {
     return(
       <div>
-        <form className="RoutesAddList" onSubmit={this.onSubmit}>
-          <input value={this.state.term} list='item' onChange={this.onChange} />
-          <datalist id="item">{this.state.list}</datalist>
-          <button>Add</button>
+        <form className="RoutesAddList">
+          <input value={this.state.term} list="StopList" onChange={this.onChange.bind(this)} />
+          <datalist id="StopList">{this.state.list}</datalist>
+          <button type="button" onClick={this.add.bind(this)}>Add</button>
         </form>
 
-        <List items={this.state.items} />
+        <ul>{this.state.items.map((stop) =>{<li>{stop}</li>})}</ul>
 
         </div>
     );

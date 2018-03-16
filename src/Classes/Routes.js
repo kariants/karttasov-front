@@ -8,7 +8,7 @@ export class Routes extends React.Component {
     Agency: this.props.Routes.Agency,
     Description: this.props.Routes.Description,
     Line_Code: this.props.Routes.Line_Code,
-    stopCodeList: this.props.Routes.stopCodeList,
+    stopCodeList: [this.props.Routes.stopCodeList],
     list:this.props.Routes.list
   };
 
@@ -17,6 +17,7 @@ export class Routes extends React.Component {
 }
 
 stopCodeCallback = (stopCodeList) =>{
+  console.log(stopCodeList);
       this.setState({stopCodeList: stopCodeList});
   }
 
@@ -28,18 +29,15 @@ handleChange(event) {
     if(event.target.name === "Line_Code"){
 
       fetch("/routes/"+event.target.value).then(res =>res.json()).then((result)=>{
-
-      if(result.length >1 || result.length === 0){
+      if(result.length >= 1){
+        console.log(result);
       const data = result.map((line) =><option key={line.Line_Code} value={line.Line_Code}/>);
-      this.setState({list: data})
-
-    }else{
       this.setState({
+        list: data,
         Agency: result[0].Agency,
         Line_Code: result[0].Line_Code,
         Description: result[0].Desc,
-        stopCodeList: result[0].stopCodeList,
-      },() =>{ this.props.callback({Routes:this.state})})
+        stopCodeList: result[0].Stop_Code},() =>{ this.props.callback({Routes:this.state})})
 
     }
   });
@@ -64,7 +62,8 @@ remove(event){
          Agency: '',
          Description: '',
          Line_Code: '',
-         stopCodeList:''
+         stopCodeList:'',
+         list:''
        },() =>{ this.props.callback({Stop:this.state})});
 }});
 
@@ -73,12 +72,6 @@ remove(event){
 handleSubmit(event) {
 //  console.log(this);
 event.preventDefault();
-var line="";
-  if(this.state.Line_Code.length != 2 || this.state.Line_Code.length != 4 ){
-    line = 0+this.state.Line_Code;
-  }else{
-    line = this.state.Line_Code;
-  }
 
 fetch("/routes/new",{
   method: 'POST',
@@ -89,7 +82,7 @@ fetch("/routes/new",{
     body: JSON.stringify({
       Agency:this.state.Agency,
       Description:this.state.Description,
-      Line_Code:line,
+      Line_Code:this.state.Line_Code,
       Stop_Code:this.state.stopCodeList
     }),
 })
@@ -101,8 +94,9 @@ fetch("/routes/new",{
       Agency: '',
       Description: '',
       Line_Code: '',
-      stopCodeList:''
-    })
+      stopCodeList:'',
+      list:''
+    },() =>{ this.props.callback({Stop:this.state})})
 
 }});
 
@@ -129,7 +123,7 @@ fetch("/routes/new",{
 
             <fieldset>
             <legend>Stop Code</legend>
-            <RoutesAddList callback={this.stopCodeCallback}/>
+            <RoutesAddList stopCodeList={this.state.stopCodeList} callback={this.stopCodeCallback}/>
 
             </fieldset>
               <input type="submit" value="Submit"/>
