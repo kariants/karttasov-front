@@ -7,7 +7,7 @@ export class TimeTables extends React.Component {
   super(props);
   this.state = {
     Stop_Code: this.props.TimeTables.Stop_Code,
-    day: this.props.TimeTables.day,
+    day: 'weekday',
     line_Code: this.props.TimeTables.line_Code,
     Stop_Time: this.props.TimeTables.Stop_Code,
     list: this.props.TimeTables.list,

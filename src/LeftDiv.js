@@ -16,6 +16,8 @@ componentWillReceiveProps(nexProps) {
     timetables: nexProps.timetables,
     marker: nexProps.marker
 
+  },()=>{
+    console.log(this.state);
   });
 }
 

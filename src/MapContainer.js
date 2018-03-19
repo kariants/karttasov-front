@@ -84,7 +84,7 @@ componentDidUpdate() {
         infoWindow.setContent( marker.Stop_Code   + " - " + marker.title);
         infoWindow.open(this.map, marker);
 
-        fetch("/timetables/" + marker.Stop_Code).then((result) => {
+        fetch("/timetables/" + marker.Stop_Code).then(res =>res.json()).then((result) => {
           this.props.callback(marker, result);
         });
 
