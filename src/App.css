@@ -36,7 +36,7 @@
   height: 100%;
 }
 #LeftDiv{
-  height: 100%;
+  height: auto;
   width: auto;
   position: fixed;
   z-index: 10;

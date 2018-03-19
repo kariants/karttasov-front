@@ -24,8 +24,9 @@ componentWillReceiveProps(nexProps) {
 
   render() {
     return (
-      <div>
+      <div style={{width:"250px", maxHeight:"90%"}}>
       <h2>{this.state.marker.Stop_Code} - {this.state.marker.title}</h2>
+        {this.state.timetables.map((entry) => entry.Times.map((Times) =><p style={{width:"25%", display:"inline-block"}}>{Times.Stop_Time}/{Times.Line_Code}</p> ))}
       </div>
 
     );
