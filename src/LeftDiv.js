@@ -27,6 +27,7 @@ componentWillReceiveProps(nexProps) {
       <div>
       <h2>{this.state.marker.Stop_Code} - {this.state.marker.title}</h2>
       </div>
+
     );
   }
 }

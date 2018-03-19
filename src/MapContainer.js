@@ -77,11 +77,12 @@ componentDidUpdate() {
           lng: parseFloat(markerArr[i].Position.lng) },
         map: this.state.map,
         title: markerArr[i].Name,
-        Stop_Code: markerArr[i].Stop_Code
+        Stop_Code: markerArr[i].Stop_Code,
+        Description: markerArr[i].Desc
       });
 
       marker.addListener('click', (event) => {
-        infoWindow.setContent( marker.Stop_Code   + " - " + marker.title);
+        infoWindow.setContent( marker.Stop_Code   + " - " + marker.title + " - " + marker.Description);
         infoWindow.open(this.map, marker);
 
         fetch("/timetables/" + marker.Stop_Code).then(res =>res.json()).then((result) => {
