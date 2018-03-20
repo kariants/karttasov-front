@@ -27,11 +27,15 @@ render(){
   var style = {};
   if(this.state.showhideRight === "show"){
     style = {
-      width:"300px"
+      width:"300px",
+      overflow:"hidden",
+      backgroundColor: "white"
     }
   }else{
     style = {
-      width:"0px"
+      width:"0px",
+      overflow:"hidden",
+      backgroundColor: "transparent"
     }
   }
   return(
