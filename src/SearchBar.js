@@ -33,7 +33,7 @@ combiner(){
 
     return (
       <div>
-      <input type="text" placeholder="Search..."id="Search" list={"SandR"} onChange={this.handleChange.bind(this)} value={this.state.name} style={{width: '100%', height: 30}}/>
+      <input type="text" placeholder="Search..."id="Search" list={"SandR"} onChange={this.handleChange.bind(this)} value={this.state.name} style={{width: '50%', height: 30}}/>
       <datalist id="SandR">{this.combiner()}</datalist>
       </div>
     )
