@@ -105,7 +105,7 @@ fetch('/stops/new', {
 
   render() {
     return (
-      <div>
+      <div id="Stopformdiv">
 
             <p>Bus Stops Form</p>
 

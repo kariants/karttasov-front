@@ -19,12 +19,11 @@ callback=(data)=>{
 
 render(){
   if(this.props.choose === "Stop_button"){
-
-    return(<Stop callback={this.callback} Stop={this.state.Stop}/>);
+    return(<Stop style={{width:"100%"}} callback={this.callback} Stop={this.state.Stop}/>);
   }else if(this.props.choose === "Routes_button"){
-    return(<Routes callback={this.callback} Routes={this.state.Routes} />);
+    return(<Routes style={{width:"100%"}} callback={this.callback} Routes={this.state.Routes} />);
   }else if(this.props.choose === "TimeTables_button"){
-    return(<TimeTables callback={this.callback} TimeTables={this.state.TimeTables} />);
+    return(<TimeTables style={{width:"100%"}} callback={this.callback} TimeTables={this.state.TimeTables} />);
   }
 
 

@@ -68,7 +68,7 @@ fetch('/timetables/update', {
 
 render() {
   return (
-    <div>
+    <div syle={{overflow:"hidden"}}>
     <p>Timetables Form</p>
           <form onSubmit={this.handleSubmit} id="timetables_form">
             <label htmlFor="Stop_Code">Stop Code
