@@ -36,8 +36,9 @@
   height: 100%;
 }
 #LeftDiv{
-  height: auto;
-  width: auto;
+  max-height: 90%;
+  max-width: 300px;
+  overflow-y: auto;
   position: fixed;
   z-index: 10;
   top: 50px;

@@ -27,19 +27,6 @@ export default class App extends Component {
     })
     }
   render() {
-    var rightdivcss = {}
-    if(this.state.showhideRight === "show"){
-    rightdivcss = {
-      width:"300px",
-      display:"none"
-    }
-
-  }else{
-    rightdivcss = {
-        width:"0px",
-      display:"none"
-    }
-  }
     return (
       <div>
       <div id="searchBar">
