@@ -20,8 +20,5 @@ form input{
 }
 #remove_button{
   postion:relative;
-  width:100%
-}
-#Stopformdiv{
-  overflow: hidden;
+  width:100%;
 }

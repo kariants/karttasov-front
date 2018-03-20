@@ -35,7 +35,7 @@ export default class App extends Component {
       <div id="mapContainer ">
         <MapsRenderer callback={this.callback} />
       </div>
-      <div id="post">
+      <div>
         <Post hide={this.state.showhideRight} />
       </div>
       <div id="LeftDiv">

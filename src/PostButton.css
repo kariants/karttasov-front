@@ -1,6 +1,6 @@
-
 #PostButton{
   width: 100%;
+  height: auto;
   overflow: hidden;
   position: relative;
 
@@ -9,10 +9,11 @@
   width: 100%;
   padding: 0;
   display: table;
-     table-layout: fixed;
+  table-layout: fixed;
 }
 #form_list > li {
   width: 33%;
+  height: auto;
   display: table-cell;
   border: 1px solid black;
   text-align: center
